@@ -1,0 +1,94 @@
+This file is used to track the progress of the project
+Press alt + D in front of a todo box to toggle it
+
+Task 1: Initial Setup:   
+  ✔ Create a new empty folder 'bsharp' and open it in VS Code. Note: # is not URL-friendly @done(22-08-03 15:26)
+  ✔ Open terminal inside VS Code and run 'npx create-react-app . ' @done(22-08-03 15:26)
+  ✔ Follow steps 2, 3 & 4 to setup Tailwind CSS: https://tailwindcss.com/docs/guides/create-react-app @done(22-08-03 15:27)
+      What's Tailwind CSS? It's a framework that allows you you rapidly build modern websites.
+      Instead of doing this
+      .someClassName {
+        padding-left 5px;
+        margin-right 6px;
+        display flex;
+        width 100%
+        height 80%
+        ...
+      } -> <div className="someClassName"></div>
+      You now do this -> <div className="pl-5 mr-6 flex w-full h-[80%]"></div> 
+      Faster and easier, no longer do you need 2k+ lines for CSS
+  
+  ☐ Run 'npm start' to check that the project works fine
+  ☐ Create a new empty repo in Github then perform the following
+    ☐ Run 'git init' inside 'bsharp' folder
+    ☐ Stage all the changes, using 'git add * '
+    ☐ Commit the changes, using "git commit -m 'message' "
+    ☐ Create a new main branch, using 'git branch -M main'
+    ☐ Link the remote repo in Github to your local repo, using 'git remote add origin https://github.com/you/yourRepo.git'
+    ☐ Push your first commit, using 'git push -u origin main' 
+
+Task 2: Get used to React and Tailwind CSS:
+  ☐ In the components folder, create a new Counter.js file, Counter being a functional component
+      Use the snippet 'rfce' for a quick functional component template
+
+  ☐ Remove all the contents of App.js: App component should now just return your Counter component
+  ☐ Your counter component should have:
+    ☐ A state that represents the value of the counter: https://reactjs.org/docs/hooks-state.html
+    ☐ Title, and text below it that shows the value of the counter as it changes
+    ☐ Button that increments the value of counter on click
+    ☐ Button that decrements the value of counter on click
+  
+  ☐ Read about the useEffect hook:
+      useEffect hook is a powerful way to execute code one or multiple times whenever a certain condition is present
+      Assuming that you have the following state
+      const [count, setCount] = useState(0) 
+      const [another, setAnother] = useState(1)
+      'count' is the state, 'setCount' is used to change the value inside 'count', and 0 is the initial value of 'count'
+      Same logic for 'another'
+      Case 1 -> This useEffect will execute the code inside it each time the value inside 'count' or 'another' changes
+        useEffect(() => {
+          some code here;
+        })
+      
+      useEffect can take a second argument, called a dependency array.
+      Case 2 -> In the case below, useEffect will execute the code inside it each time the value of 'count' changes
+      When the value of 'another' changes, nothing happens, since 'another' is not in the dependency array
+        useEffect(() => {
+          some code here;
+        }, [count])
+    
+      Case 3 -> If we leave the dependency array empty like so [], useEffect will execute the code inside it ONLY ONCE, when the component loads
+        useEffect(() => {
+          some code only executed once at load
+        }, [])
+      
+      Since the dependency array is empty, the useEffect hook does not care about any change in the state, and does not get called
+
+      Note that in the three cases, the function inside useEffect will always get called when the component loads 
+
+  ☐ Using the useEffect hook, achieve the following:
+    ☐ When you load/open/refresh the page, alert() a message that says something. This should not occur again when value of your counter changes
+    ☐ Each time the value of your counter changes, console.log() the new value
+    ☐ If the value of counter becomes 10 or -10, set it back to 0
+  
+  ☐ Challenge 1: add a new text that says 'odd' or 'even' depending on the value of counter
+   ☐ Do this using the ternary operator: condition ? outcome 1 : outcome 2
+   ☐ Do this using useState and useEffect
+
+  ☐ Challenge 2:
+    ☐ When counter is greater or equal to 5, a button that decrements by 5 should appear, otherwise it stays hidden
+    ☐ When counter is less or equal to -5, a button that increments by 5 should appear, otherwise it stays hidden
+
+  ☐ Use tailwind CSS to style your text and buttons, and center everything in the middle using flex
+      To use tailwind, simply give your element a tailwind classname
+      To find the classnames, use your intuition or look it up on google
+      Look up display flex, justify-content and align-items
+      Tailwind offers shortcuts, for example 'width 100%' is w-full, 'display flex' is flex, 'margin-left 5' is ml-5
+      To use custom variables with tailwind, you should use -[] like so w-[300px] or ml-[69px]
+
+  ☐ Challenge 3: make a new text element called "I am dynamic":
+    ☐ If the value of counter is odd, then the color of the text should be red, otherwise blue
+    ☐ The default font size of the text should be 16px when the counter is 0
+    ☐ If you decrement or increment the value of counter, 16px should change accordingly
+        Example -> Counter is 5, font size of the text should be 21px
+        Example -> Counter is -1, font size of the text should be 15px
